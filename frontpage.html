@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Front Page</title>
+    <title>Online Voting System</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body, html {
@@ -15,20 +15,88 @@
     </style>
 </head>
 <body>
-    <div class="w-full h-full flex">
-        <div class="w-[699px] h-[1242px]">
-            <img class="w-full h-full" src="bg.jpeg" alt="Background Image" />
+    <div class="flex flex-col lg:flex-row w-full h-full">
+        <div class="w-full lg:w-[699px] h-[400px] lg:h-[1242px]">
+            <img class="w-full h-full object-cover" src="bg.jpeg" alt="Background Image" />
         </div>
-        <div class="flex-1 h-[1242px] bg-black flex flex-col items-center justify-center">
-            <div class="text-white text-5xl font-normal font-['Georgia'] mb-6">
+        <div class="flex-1 h-full lg:h-[1242px] bg-black flex flex-col items-center justify-center px-4 lg:px-0">
+            <div class="text-white text-2xl lg:text-5xl font-normal font-['Georgia'] mb-6 text-center">
                 Be a part of decision making system
             </div>
-            <div class="text-[#015fc7] text-[99px] font-normal font-['Papyrus'] mb-6">
+            <div class="text-[#015fc7] text-[50px] lg:text-[99px] font-normal font-['Papyrus'] mb-6 text-center">
                 Vote Today
             </div>
-            <button class="w-[234px] h-[59px] bg-[#004ea3] rounded-[14px] text-white text-[25px] font-normal font-['Outfit'] mt-4">
+            <button class="w-[200px] lg:w-[234px] h-[50px] lg:h-[59px] bg-[#004ea3] rounded-[14px] text-white text-[20px] lg:text-[25px] font-normal font-['Outfit'] mt-4">
                 Register
             </button>
+        </div>
+    </div>
+
+    <div class="w-full lg:w-[1440px] h-auto lg:h-[1024px] px-4 lg:pl-[195px] lg:pr-[451px] py-20 bg-white flex flex-col lg:flex-row justify-start items-center mt-[500px]">
+        <div class="relative w-full lg:w-[794px] h-auto lg:h-[704px]">
+            <div class="absolute lg:left-0 lg:top-[571px] origin-top-left lg:-rotate-90 text-black text-[60px] lg:text-[115px] font-normal font-['DM Serif Display']">
+                Features
+            </div>
+            <div class="relative lg:left-[225px] w-full lg:w-[569px]">
+                <div class="flex items-start mb-10">
+                    <img class="w-[60px] lg:w-[83px] h-[60px] lg:h-[74px]" src="svg/Lock.svg" alt="Lock Icon" />
+                    <div class="ml-4 text-[#010029] text-[18px] lg:text-[25px] font-normal font-['DM Serif Display']">
+                        Secured by 256 bit encryption
+                    </div>
+                </div>
+                <div class="flex items-start mb-10">
+                    <img class="w-[60px] lg:w-[73.12px] h-[60px] lg:h-[74px]" src="svg/,.svg" alt="Approved Delivery Icon" />
+                    <div class="ml-4 text-[#010029] text-[18px] lg:text-[25px] font-normal font-['DM Serif Display']">
+                        Backed by ethereum based technology
+                    </div>
+                </div>
+                <div class="flex items-start mb-10">
+                    <img class="w-[60px] lg:w-[72.13px] h-[60px] lg:h-[73px]" src="svg/Approved Delivery.svg" alt="Verifiable Transactions Icon" />
+                    <div class="ml-4 text-[#010029] text-[18px] lg:text-[25px] font-normal font-['DM Serif Display']">
+                        Verifiable transactions
+                    </div>
+                </div>
+                <div class="flex items-start mb-10">
+                    <img class="w-[60px] lg:w-[74.11px] h-[60px] lg:h-[75px]" src="svg/Hand Cursor.svg" alt="Hand Cursor Icon" />
+                    <div class="ml-4 text-[#010029] text-[18px] lg:text-[25px] font-normal font-['DM Serif Display']">
+                        Easy to use
+                    </div>
+                </div>
+                <div class="flex items-start mb-10">
+                    <img class="w-[60px] lg:w-[72.13px] h-[60px] lg:h-[73px]" src="svg/Low Price.svg" alt="Low Price Icon" />
+                    <div class="ml-4 text-[#010029] text-[18px] lg:text-[25px] font-normal font-['DM Serif Display']">
+                        Cheaper than ballot voting system
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <img class="w-[60px] lg:w-[73.12px] h-[60px] lg:h-[74px]" src="svg/Time span.svg" alt="Time Span Icon" />
+                    <div class="ml-4 text-[#010029] text-[18px] lg:text-[25px] font-normal font-['DM Serif Display']">
+                        Faster voting process
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Updated About Section -->
+    <div class="w-full h-auto lg:h-[1024px] py-20 bg-[#001024] flex flex-col justify-center items-center">
+        <div class="relative w-full lg:w-[1145px] h-auto lg:h-[668px]">
+            <div class="absolute lg:left-0 lg:top-[490px] origin-top-left lg:-rotate-90 text-white text-[60px] lg:text-[115px] font-normal font-['DM Serif Display']">
+                About
+            </div>
+            <div class="relative lg:left-[221px] w-full lg:w-[924px] text-white text-justify text-[20px] lg:text-[40px] font-normal font-['DM Serif Display']">
+                An online voting system that will replace the <br/>
+                old ballot system or paper system. Over the time <br/>
+                we have utilized the required technology in every <br/>
+                sector to improve efficiency and save the extra <br/>
+                resources. But the voting system is still very <br/>
+                expensive and requires a bigger workforce. <br/>
+                The system is slower and still not completely <br/>
+                tamper-proof. We bring the system that is safe, <br/>
+                reliable and solves the modern issues like higher <br/>
+                reachability of the booth, crowd-free voting, <br/>
+                inexpensive, faster results, and others.
+            </div>
         </div>
     </div>
 </body>
