@@ -11,13 +11,33 @@
             padding: 0;
             height: 100%;
             width: 100%;
+            background-color: black;
+        }
+        .hidden {
+            opacity: 0;
+            transform: translateY(-100%);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity 0.3s ease, transform 0.3s ease;
         }
     </style>
 </head>
 <body>
-    <div class="flex flex-col lg:flex-row w-full h-full">
+    <nav id="navbar" class="fixed top-0 left-1/2 transform -translate-x-1/2 w-[90%] lg:w-[70%] bg-white bg-opacity-20 backdrop-blur-md rounded-full px-8 py-4 mt-6 shadow-md flex justify-between items-center">
+        <div class="text-white text-xl lg:text-2xl font-['Georgia']">Online Voting System</div>
+        <div class="flex items-center space-x-6">
+            <button class="text-white hover:text-blue-500 transition duration-300 font-['Georgia']">About</button>
+            <button class="text-white hover:text-blue-500 transition duration-300 font-['Georgia']">Contact</button>
+            <button class="bg-blue-600 text-white py-2 px-4 rounded-full hover:bg-blue-700 transition duration-300 font-['Georgia']">Login</button>
+        </div>
+    </nav>
+
+    <div class="flex flex-col lg:flex-row w-full h-full mt-[100px]">
         <div class="w-full lg:w-[699px] h-[400px] lg:h-[1242px]">
-            <img class="w-full h-full object-cover" src="bg.jpeg" alt="Background Image" />
+            <img class="w-full h-full object-cover" src="images/bg.jpeg" alt="Background Image" />
         </div>
         <div class="flex-1 h-full lg:h-[1242px] bg-black flex flex-col items-center justify-center px-4 lg:px-0">
             <div class="text-white text-2xl lg:text-5xl font-normal font-['Georgia'] mb-6 text-center">
@@ -26,18 +46,18 @@
             <div class="text-[#015fc7] text-[50px] lg:text-[99px] font-normal font-['Papyrus'] mb-6 text-center">
                 Vote Today
             </div>
-            <button class="w-[200px] lg:w-[234px] h-[50px] lg:h-[59px] bg-[#004ea3] rounded-[14px] text-white text-[20px] lg:text-[25px] font-normal font-['Outfit'] mt-4">
+            <a href="register.html" class="w-[200px] lg:w-[234px] h-[50px] lg:h-[59px] bg-[#004ea3] rounded-[14px] text-white text-[20px] lg:text-[25px] font-normal font-['Outfit'] mt-4 flex items-center justify-center hover:bg-[#003b8a] transition duration-300">
                 Register
-            </button>
+            </a>
         </div>
     </div>
 
-    <div class="w-full lg:w-[1440px] h-auto lg:h-[1024px] px-4 lg:pl-[195px] lg:pr-[451px] py-20 bg-white flex flex-col lg:flex-row justify-start items-center mt-[500px]">
-        <div class="relative w-full lg:w-[794px] h-auto lg:h-[704px]">
+    <div class="w-full h-auto lg:h-[1024px] px-4 lg:px-0 py-20 bg-white flex flex-col lg:flex-row justify-start items-center mt-[500px]">
+        <div class="relative w-full lg:w-[794px] h-auto lg:h-[704px] bg-white">
             <div class="absolute lg:left-0 lg:top-[571px] origin-top-left lg:-rotate-90 text-black text-[60px] lg:text-[115px] font-normal font-['DM Serif Display']">
                 Features
             </div>
-            <div class="relative lg:left-[225px] w-full lg:w-[569px]">
+            <div class="relative lg:left-[225px] w-full lg:w-[569px] bg-white">
                 <div class="flex items-start mb-10">
                     <img class="w-[60px] lg:w-[83px] h-[60px] lg:h-[74px]" src="svg/Lock.svg" alt="Lock Icon" />
                     <div class="ml-4 text-[#010029] text-[18px] lg:text-[25px] font-normal font-['DM Serif Display']">
@@ -78,7 +98,6 @@
         </div>
     </div>
 
-    <!-- Updated About Section -->
     <div class="w-full h-auto lg:h-[1024px] py-20 bg-[#001024] flex flex-col justify-center items-center">
         <div class="relative w-full lg:w-[1145px] h-auto lg:h-[668px]">
             <div class="absolute lg:left-0 lg:top-[490px] origin-top-left lg:-rotate-90 text-white text-[60px] lg:text-[115px] font-normal font-['DM Serif Display']">
@@ -99,5 +118,21 @@
             </div>
         </div>
     </div>
+
+    <script>
+        let navbar = document.getElementById('navbar');
+        let lastScrollY = window.scrollY;
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > lastScrollY && window.scrollY > 600) {
+                navbar.classList.add('hidden');
+                navbar.classList.remove('visible');
+            } else {
+                navbar.classList.remove('hidden');
+                navbar.classList.add('visible');
+            }
+            lastScrollY = window.scrollY;
+        });
+    </script>
 </body>
 </html>
