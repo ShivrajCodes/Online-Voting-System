@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Info</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="w-[1440px] h-[1024px] bg-[#001024] relative">
+  <div class="h-[35.50px] left-[536.96px] top-[75px] absolute">
+    <div class="left-[236.04px] top-0 absolute text-white text-[25px] font-normal font-['DM Serif Display']">Elections</div>
+    <div class="left-[428.04px] top-0 absolute text-white text-[25px] font-normal font-['DM Serif Display']">Contact</div>
+    <div class="w-[146.09px] h-[35.50px] left-0 top-0 absolute">
+      <div class="left-[0.04px] top-0 absolute text-white text-[25px] font-normal font-['DM Serif Display']">Personal Info</div>
+      <div class="w-[146.09px] h-[0px] left-0 top-[35.50px] absolute border-2 border-[#005ac7]"></div>
+    </div>
+    <div class="w-[140px] h-[34px] left-[606.04px] top-0 absolute">
+      <div class="w-[140px] h-[34px] left-0 top-0 absolute bg-[#015fc7] rounded-[5px]"></div>
+      <div class="left-[45px] top-0 absolute text-white text-[25px] font-normal font-['DM Serif Display']">Vote</div>
+    </div>
+  </div>
+
+  <div id="infoContainer" class="w-[968px] h-[585px] left-[200px] top-[236px] absolute">
+    <!-- Dynamic content will be injected here -->
+  </div>
+
+  <div class="w-[282px] h-[49px] left-[200px] top-[573px] absolute bg-[#015fc7]"></div>
+  <div class="left-[252px] top-[585px] absolute text-white text-lg font-normal font-['DM Serif Display']">Change profile picture</div>
+  <div class="left-[280px] top-[683px] absolute text-white text-xl font-normal font-['DM Serif Display']">Edit Profile</div>
+
+  <script>
+    const infoContainer = document.getElementById("infoContainer");
+
+    // Function to render the user information dynamically
+    function renderUserInfo(user) {
+      const fields = [
+        { label: "Name", key: "name", value: user.name },
+        { label: "Father’s/Mother’s Name", key: "parent_name", value: user.parent_name },
+        { label: "Age", key: "dob", value: user.dob || "Enter your age" },
+        { label: "Mobile Number", key: "mobile", value: user.mobile || "Enter your number" },
+        { label: "Email", key: "email", value: user.email || "Enter your email" },
+        { label: "Aadhar Number", key: "aadhar", value: user.aadhar || "Enter your Aadhar" },
+        { label: "Address", key: "address", value: user.address || "Enter your address" },
+        { label: "Eligible", key: "eligible", value: user.eligible || "Enter eligibility" },
+        { label: "Verified", key: "verified", value: user.verified || "Enter verification status" },
+      ];
+
+      infoContainer.innerHTML = fields
+        .map(
+          (field) => `
+          <div class="flex items-center mb-4">
+            <div class="text-[#015fc7] text-lg font-normal font-['Padauk']">${field.label}:</div>
+            <input 
+              type="text" 
+              id="${field.key}" 
+              value="${field.value}" 
+              class="ml-4 bg-[#001024] text-white border border-[#015fc7] px-2 py-1 rounded-md"
+              placeholder="Enter ${field.label}"
+              onblur="updateField('${field.key}', this.value)"
+            />
+          </div>
+        `
+        )
+        .join("");
+    }
+
+    // Fetch user info from backend
+    async function fetchUserInfo() {
+      try {
+        const response = await fetch('/api/getUserInfo'); // Replace with your endpoint
+        if (!response.ok) throw new Error("Failed to fetch user info");
+        const user = await response.json();
+        renderUserInfo(user);
+      } catch (error) {
+        console.error("Error fetching user info:", error);
+      }
+    }
+
+    // Update the user field in the backend
+    async function updateField(key, value) {
+      try {
+        const response = await fetch('/api/updateUserInfo', {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ [key]: value }),
+        });
+        if (!response.ok) throw new Error("Failed to update user info");
+        console.log(`Updated ${key} successfully.`);
+      } catch (error) {
+        console.error(`Error updating ${key}:`, error);
+      }
+    }
+
+    // Fetch and render user info on page load
+    fetchUserInfo();
+  </script>
+</body>
+</html>

@@ -4,39 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <!-- Tailwind CSS CDN for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
     <div class="w-full h-screen flex bg-[#001024]">
-        <!-- Left section for image -->
         <div class="hidden md:flex w-1/2 h-full items-center justify-center">
-            <img src="images/logimg.png" alt="Login Image" class="w-3/4 h-auto">
+            <img src="images/lock.png" alt="Login Image" class="w-3/4 h-auto">
         </div>
-        
-        <!-- Right section for the login form -->
         <div class="w-full md:w-1/2 h-full flex justify-center items-center">
             <div class="w-[363px] h-auto">
                 <div class="text-white text-[45px] font-normal font-['DM Serif Display'] mb-6">Login</div>
-                
-                <label for="email" class="text-white text-xl font-normal font-['Padauk'] mb-2 block">Email</label>
-                <input type="email" id="email" placeholder="Enter your email" class="w-full h-[43px] bg-white px-2 mb-4">
-                
-                <label for="password" class="text-white text-xl font-normal font-['Padauk'] mb-2 block">Password</label>
-                <input type="password" id="password" placeholder="Enter your password" class="w-full h-[43px] bg-white px-2 mb-4">
-                
-                <button class="text-[#499efd] text-xl font-normal font-['Padauk'] mb-4 underline">Forgot Password?</button>
-                
-                <div class="text-white text-xl font-normal font-['Padauk'] mb-2">
-                    <span>Not a user? </span>
-                    <a href="register.html" class="text-[#499efd] underline">Register now</a>
-                </div>
-                
-                <button type="submit" class="w-full h-[43px] bg-[#015fc7] text-white text-xl font-bold font-['Padauk'] mt-4">
-                    LOGIN
-                </button>
+
+                <form id="loginForm">
+                    <label for="email" class="text-white text-xl font-normal mb-2 block">Email</label>
+                    <input type="email" id="email" name="email" class="w-full h-[43px] bg-white px-2 mb-4" required>
+
+                    <label for="password" class="text-white text-xl font-normal mb-2 block">Password</label>
+                    <input type="password" id="password" name="password" class="w-full h-[43px] bg-white px-2 mb-4" required>
+
+                    <div id="errorMessage" class="hidden text-red-500 text-sm mt-2"></div>
+
+                    <button type="submit" class="w-full h-[43px] bg-[#015fc7] text-white text-xl font-bold mt-4">
+                        LOGIN
+                    </button>
+                </form>
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            fetch("http://localhost:3000/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    email: document.getElementById("email").value,
+                    password: document.getElementById("password").value
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = "/personalinfo.html";
+                } else {
+                    const errorMessage = document.getElementById("errorMessage");
+                    errorMessage.textContent = "Invalid email or password!";
+                    errorMessage.classList.remove("hidden");
+                }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+                alert("An unexpected error occurred!");
+            });
+        });
+    </script>
 </body>
 </html>
